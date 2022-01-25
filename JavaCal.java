@@ -303,17 +303,48 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
-				material = Double.parseDouble(textField.getText());
-				fieldRefresh = 1;
-				operator = 1;
-				
-				/* 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 
-				if(txtFd != 0)
-					//txtFd = txtFd + textField.getText();
-					textField.setText(txtFd + textField.getText());	// 연산결과 출력
+				// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
+				// 연산자를 여러번 누른 경우이므로 연산결과를 material에 재대입
+				if(material != 0) {
+					/*
+					material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 연산결과 출력
+					fieldRefresh = 1;
+					operator = 1;
 					*/
 					
+					// material , textField.getText()
+					switch(operator) {	
+					// + = 1 
+					case 1: material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 1; break;
+					// - = 2
+					case 2: material = material - Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 1; break;
+					// * = 3
+					case 3: material = material * Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 1; break;
+					// / = 4
+					case 4: material = material / Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 1; break;
+					// operator = 0
+					default: break;
+					}
+					
+				}else {
+					// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
+					material = Double.parseDouble(textField.getText());
+					fieldRefresh = 1;
+					operator = 1;					
+				}
 			}
 			
 		});
@@ -328,16 +359,48 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
-				material = Double.parseDouble(textField.getText());
-				fieldRefresh = 1;
-				operator = 2;
-				
-				/* 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 
-				if(txtFd != 0)
-					//txtFd = txtFd + textField.getText();
-					textField.setText(txtFd + textField.getText());	// 연산결과 출력
+				// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
+				// 연산자를 여러번 누른 경우이므로 연산결과를 material에 재대입
+				if(material != 0) {
+					/*
+					material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 연산결과 출력
+					fieldRefresh = 1;
+					operator = 2;
 					*/
+					
+					// material , textField.getText()
+					switch(operator) {	
+					// + = 1 
+					case 1: material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 2; break;
+					// - = 2
+					case 2: material = material - Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 2; break;
+					// * = 3
+					case 3: material = material * Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 2; break;
+					// / = 4
+					case 4: material = material / Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 2; break;
+					// operator = 0
+					default: break;
+					}
+					
+				}else {
+					// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
+					material = Double.parseDouble(textField.getText());
+					fieldRefresh = 1;
+					operator = 2;					
+				}
 					
 			}
 			
@@ -353,16 +416,48 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
-				material = Double.parseDouble(textField.getText());
-				fieldRefresh = 1;
-				operator = 3;
-				
-				/* 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 
-				if(txtFd != 0)
-					//txtFd = txtFd + textField.getText();
-					textField.setText(txtFd + textField.getText());	// 연산결과 출력
+				// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
+				// 연산자를 여러번 누른 경우이므로 연산결과를 material에 재대입
+				if(material != 0) {
+					/*
+					material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 연산결과 출력
+					fieldRefresh = 1;
+					operator = 3;
 					*/
+					
+					// material , textField.getText()
+					switch(operator) {	
+					// + = 1 
+					case 1: material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 3; break;
+					// - = 2
+					case 2: material = material - Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 3; break;
+					// * = 3
+					case 3: material = material * Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 3; break;
+					// / = 4
+					case 4: material = material / Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 3; break;
+					// operator = 0
+					default: break;
+					}
+					
+				}else {
+					// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
+					material = Double.parseDouble(textField.getText());
+					fieldRefresh = 1;
+					operator = 3;					
+				}
 					
 			}
 			
@@ -378,16 +473,48 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
-				material = Double.parseDouble(textField.getText());
-				fieldRefresh = 1;
-				operator = 4;
-				
-				/* 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 
-				if(txtFd != 0)
-					//txtFd = txtFd + textField.getText();
-					textField.setText(txtFd + textField.getText());	// 연산결과 출력
+				// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
+				// 연산자를 여러번 누른 경우이므로 연산결과를 material에 재대입
+				if(material != 0) {
+					/*
+					material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 연산결과 출력
+					fieldRefresh = 1;
+					operator = 4;
 					*/
+					
+					// material , textField.getText()
+					switch(operator) {	
+					// + = 1 
+					case 1: material = material + Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 4; break;
+					// - = 2
+					case 2: material = material - Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 4; break;
+					// * = 3
+					case 3: material = material * Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material)); // 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 4; break;
+					// / = 4
+					case 4: material = material / Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(material));	// 결과 출력
+					fieldRefresh = 1; // 필드 초기화 활성화 
+					operator = 4; break;
+					// operator = 0
+					default: break;
+					}
+					
+				}else {
+					// 텍스트 필드에 원래 나와있던 값 (후에 입력한 값과 연산)
+					material = Double.parseDouble(textField.getText());
+					fieldRefresh = 1;
+					operator = 4;					
+				}
 					
 			}
 			
@@ -454,24 +581,27 @@ public class JavaCal {
 				switch(operator) {	
 				// + = 1 
 				case 1: result = material + Double.parseDouble(textField.getText());
+				textField.setText(Double.toString(result)); // 결과 출력
+				fieldRefresh = 1; // 필드 초기화 활성화 
 				operator = 0; break;
 				// - = 2
 				case 2: result = material - Double.parseDouble(textField.getText());
+				textField.setText(Double.toString(result)); // 결과 출력
+				fieldRefresh = 1; // 필드 초기화 활성화 
 				operator = 0; break;
 				// * = 3
 				case 3: result = material * Double.parseDouble(textField.getText());
+				textField.setText(Double.toString(result)); // 결과 출력
+				fieldRefresh = 1; // 필드 초기화 활성화 
 				operator = 0; break;
 				// / = 4
 				case 4: result = material / Double.parseDouble(textField.getText());
+				textField.setText(Double.toString(result));	// 결과 출력
+				fieldRefresh = 1; // 필드 초기화 활성화 
 				operator = 0; break;
 				// operator = 0
 				default: break;
 				}
-				
-				// 결과 띄우기
-				textField.setText(Double.toString(result));
-				fieldRefresh = 1; // 필드 초기화 활성화 
-				
 				
 			}
 			
