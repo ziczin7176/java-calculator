@@ -16,9 +16,9 @@ public class JavaCal {
 
 	private JFrame frmJavacalculator;
 	private JTextField textField;
-	private double material;	// ÅØ½ºÆ®ÇÊµå¿¡ ÀÖ´ø °ª
-	private double result; // °è»ê°á°ú ÀúÀå => '='´©¸£¸é ¶ç¿ì±â
-	private int fieldRefresh = 0;	// 1ÀÌ¸é ÀÌº¥Æ® ¹ß»ý ½Ã È­¸éÃÊ±âÈ­ -> ÃÊ±âÈ­ ÈÄ 0
+	private double material;	// í…ìŠ¤íŠ¸í•„ë“œì— ìžˆë˜ ê°’
+	private double result; // ê³„ì‚°ê²°ê³¼ ì €ìž¥ => '='ëˆ„ë¥´ë©´ ë„ìš°ê¸°
+	private int fieldRefresh = 0;	// 1ì´ë©´ ì´ë²¤íŠ¸ ë°œìƒ ì‹œ í™”ë©´ ì´ˆê¸°í™” -> ì´ˆê¸°í™” í›„ 0
 	private int operator = 0;	// + = 1, - = 2, * = 3, / = 4
 
 	/**
@@ -303,12 +303,12 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// ÀÌÀü °ªÀÌ ÀÖ´Â °æ¿ì -> ¿¬»êÀÚ ´©¸£¸é °á°ú Ãâ·Â = ´ÙÁß¿¬»ê
-				// ¿¬»êÀÚ¸¦ ¿©·¯¹ø ´©¸¥ °æ¿ìÀÌ¹Ç·Î ¿¬»ê°á°ú¸¦ material¿¡ Àç´ëÀÔ
+				// ì´ì „ ê°’ì´ ìžˆëŠ” ê²½ìš° -> ì—°ì‚°ìž ëˆ„ë¥´ë©´ ê²°ê³¼ ì¶œë ¥ = ë‹¤ì¤‘ì—°ì‚°
+				// ì—°ì‚°ìžë¥¼ ì—¬ëŸ¬ë²ˆ ëˆ„ë¥¸ ê²½ìš°ì´ë¯€ë¡œ ì—°ì‚°ê²°ê³¼ë¥¼ materialì— ìž¬ëŒ€ìž…
 				if(material != 0) {
 					/*
 					material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// ¿¬»ê°á°ú Ãâ·Â
+					textField.setText(Double.toString(material));	// ì—°ì‚°ê²°ê³¼ ì¶œë ¥
 					fieldRefresh = 1;
 					operator = 1;
 					*/
@@ -317,30 +317,30 @@ public class JavaCal {
 					switch(operator) {	
 					// + = 1 
 					case 1: material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); // ê²°ê³¼ ì¶œë ¥
+					fieldRefresh = 1; // í•„ë“œ ì´ˆê¸°í™” í™œì„±í™”
 					operator = 1; break;
 					// - = 2
 					case 2: material = material - Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;  
 					operator = 1; break;
 					// * = 3
 					case 3: material = material * Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;
 					operator = 1; break;
 					// / = 4
 					case 4: material = material / Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material));	
+					fieldRefresh = 1;  
 					operator = 1; break;
 					// operator = 0
 					default: break;
 					}
 					
 				}else {
-					// ÅØ½ºÆ® ÇÊµå¿¡ ¿ø·¡ ³ª¿ÍÀÖ´ø °ª (ÈÄ¿¡ ÀÔ·ÂÇÑ °ª°ú ¿¬»ê)
+					// í…ìŠ¤íŠ¸ í•„ë“œì— ì›ëž˜ ë‚˜ì™€ìžˆë˜ ê°’ (í›„ì— ìž…ë ¥í•œ ê°’ê³¼ ì—°ì‚°)
 					material = Double.parseDouble(textField.getText());
 					fieldRefresh = 1;
 					operator = 1;					
@@ -359,44 +359,38 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// ÀÌÀü °ªÀÌ ÀÖ´Â °æ¿ì -> ¿¬»êÀÚ ´©¸£¸é °á°ú Ãâ·Â = ´ÙÁß¿¬»ê
-				// ¿¬»êÀÚ¸¦ ¿©·¯¹ø ´©¸¥ °æ¿ìÀÌ¹Ç·Î ¿¬»ê°á°ú¸¦ material¿¡ Àç´ëÀÔ
+				
 				if(material != 0) {
-					/*
-					material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// ¿¬»ê°á°ú Ãâ·Â
-					fieldRefresh = 1;
-					operator = 2;
-					*/
+					
 					
 					// material , textField.getText()
 					switch(operator) {	
 					// + = 1 
 					case 1: material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;  
 					operator = 2; break;
 					// - = 2
 					case 2: material = material - Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1; 
 					operator = 2; break;
 					// * = 3
 					case 3: material = material * Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1; 
 					operator = 2; break;
 					// / = 4
 					case 4: material = material / Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material));	
+					fieldRefresh = 1; 
 					operator = 2; break;
 					// operator = 0
 					default: break;
 					}
 					
 				}else {
-					// ÅØ½ºÆ® ÇÊµå¿¡ ¿ø·¡ ³ª¿ÍÀÖ´ø °ª (ÈÄ¿¡ ÀÔ·ÂÇÑ °ª°ú ¿¬»ê)
+					
 					material = Double.parseDouble(textField.getText());
 					fieldRefresh = 1;
 					operator = 2;					
@@ -406,7 +400,7 @@ public class JavaCal {
 			
 		});
 		
-		JButton btnMultiple = new JButton("¡¿");
+		JButton btnMultiple = new JButton("Ã—");
 		btnMultiple.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnMultiple.setBounds(205, 193, 60, 60);
 		frmJavacalculator.getContentPane().add(btnMultiple);
@@ -416,44 +410,37 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// ÀÌÀü °ªÀÌ ÀÖ´Â °æ¿ì -> ¿¬»êÀÚ ´©¸£¸é °á°ú Ãâ·Â = ´ÙÁß¿¬»ê
-				// ¿¬»êÀÚ¸¦ ¿©·¯¹ø ´©¸¥ °æ¿ìÀÌ¹Ç·Î ¿¬»ê°á°ú¸¦ material¿¡ Àç´ëÀÔ
 				if(material != 0) {
-					/*
-					material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// ¿¬»ê°á°ú Ãâ·Â
-					fieldRefresh = 1;
-					operator = 3;
-					*/
+					
 					
 					// material , textField.getText()
 					switch(operator) {	
 					// + = 1 
 					case 1: material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1; 
 					operator = 3; break;
 					// - = 2
 					case 2: material = material - Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;  
 					operator = 3; break;
 					// * = 3
 					case 3: material = material * Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;  
 					operator = 3; break;
 					// / = 4
 					case 4: material = material / Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material));	
+					fieldRefresh = 1; 
 					operator = 3; break;
 					// operator = 0
 					default: break;
 					}
 					
 				}else {
-					// ÅØ½ºÆ® ÇÊµå¿¡ ¿ø·¡ ³ª¿ÍÀÖ´ø °ª (ÈÄ¿¡ ÀÔ·ÂÇÑ °ª°ú ¿¬»ê)
+					
 					material = Double.parseDouble(textField.getText());
 					fieldRefresh = 1;
 					operator = 3;					
@@ -463,7 +450,7 @@ public class JavaCal {
 			
 		});
 		
-		JButton btnDivide = new JButton("¡À");
+		JButton btnDivide = new JButton("Ã·");
 		btnDivide.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnDivide.setBounds(205, 258, 60, 60);
 		frmJavacalculator.getContentPane().add(btnDivide);
@@ -473,44 +460,37 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// ÀÌÀü °ªÀÌ ÀÖ´Â °æ¿ì -> ¿¬»êÀÚ ´©¸£¸é °á°ú Ãâ·Â = ´ÙÁß¿¬»ê
-				// ¿¬»êÀÚ¸¦ ¿©·¯¹ø ´©¸¥ °æ¿ìÀÌ¹Ç·Î ¿¬»ê°á°ú¸¦ material¿¡ Àç´ëÀÔ
 				if(material != 0) {
-					/*
-					material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// ¿¬»ê°á°ú Ãâ·Â
-					fieldRefresh = 1;
-					operator = 4;
-					*/
+					
 					
 					// material , textField.getText()
 					switch(operator) {	
 					// + = 1 
 					case 1: material = material + Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1; 
 					operator = 4; break;
 					// - = 2
 					case 2: material = material - Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1;  
 					operator = 4; break;
 					// * = 3
 					case 3: material = material * Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material)); // °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material)); 
+					fieldRefresh = 1; 
 					operator = 4; break;
 					// / = 4
 					case 4: material = material / Double.parseDouble(textField.getText());
-					textField.setText(Double.toString(material));	// °á°ú Ãâ·Â
-					fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+					textField.setText(Double.toString(material));	
+					fieldRefresh = 1; 
 					operator = 4; break;
 					// operator = 0
 					default: break;
 					}
 					
 				}else {
-					// ÅØ½ºÆ® ÇÊµå¿¡ ¿ø·¡ ³ª¿ÍÀÖ´ø °ª (ÈÄ¿¡ ÀÔ·ÂÇÑ °ª°ú ¿¬»ê)
+					
 					material = Double.parseDouble(textField.getText());
 					fieldRefresh = 1;
 					operator = 4;					
@@ -522,31 +502,17 @@ public class JavaCal {
 		
 		// ************** button <-, %, C, =, ., +/- *******************
 
-		JButton btnDelete = new JButton("¡ç");
+		JButton btnDelete = new JButton("â†");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnDelete.setBounds(10, 63, 60, 60);
 		frmJavacalculator.getContentPane().add(btnDelete);
-		// ************* other Action events **************
 		
-		/*btnDelete.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-		
-				JButton btnSource = (JButton)e.getSource();	// btnDelete
-				//textField.setText(textField.getText() - );		// text - 
-			}
-	
-		});
-		*/
 		
 		JButton btnPercentage = new JButton("%");
 		btnPercentage.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnPercentage.setBounds(75, 63, 60, 60);
 		frmJavacalculator.getContentPane().add(btnPercentage);
 		
-		// txtFd = 0 ¸¸µé°í È­¸é ÃÊ±âÈ­
 		JButton btnClear = new JButton("C");
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnClear.setBounds(140, 63, 60, 60);
@@ -557,11 +523,11 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				// Àü¿ªº¯¼ö ÃÊ±âÈ­
-				fieldRefresh = 0;			// ÇÊµå ÃÊ±âÈ­ ÇØÁ¦
-				material = 0;				// ÀúÀå °ª ÃÊ±âÈ­
-				operator = 0;				// ¿¬»êÀÚ ÃÊ±âÈ­
-				result = 0;					// °á°ú °ª ÃÊ±âÈ­
+				// ì „ì—­ë³€ìˆ˜ ì´ˆê¸°í™”
+				fieldRefresh = 0;			// í•„ë“œ ì´ˆê¸°í™” í•´ì œ
+				material = 0;				// ì €ìž¥ ê°’ ì´ˆê¸°í™”
+				operator = 0;				// ì—°ì‚°ìž ì´ˆê¸°í™”
+				result = 0;					// ê²°ê³¼ ê°’ ì´ˆê¸°í™”
 				textField.setText("0");		// clear text field	
 			}
 			
@@ -581,23 +547,23 @@ public class JavaCal {
 				switch(operator) {	
 				// + = 1 
 				case 1: result = material + Double.parseDouble(textField.getText());
-				textField.setText(Double.toString(result)); // °á°ú Ãâ·Â
-				fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+				textField.setText(Double.toString(result)); // ê²°ê³¼ ì¶œë ¥
+				fieldRefresh = 1; // í•„ë“œ ì´ˆê¸°í™” í™œì„±í™”
 				operator = 0; break;
 				// - = 2
 				case 2: result = material - Double.parseDouble(textField.getText());
-				textField.setText(Double.toString(result)); // °á°ú Ãâ·Â
-				fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+				textField.setText(Double.toString(result)); 
+				fieldRefresh = 1; 
 				operator = 0; break;
 				// * = 3
 				case 3: result = material * Double.parseDouble(textField.getText());
-				textField.setText(Double.toString(result)); // °á°ú Ãâ·Â
-				fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+				textField.setText(Double.toString(result)); 
+				fieldRefresh = 1; 
 				operator = 0; break;
 				// / = 4
 				case 4: result = material / Double.parseDouble(textField.getText());
-				textField.setText(Double.toString(result));	// °á°ú Ãâ·Â
-				fieldRefresh = 1; // ÇÊµå ÃÊ±âÈ­ È°¼ºÈ­ 
+				textField.setText(Double.toString(result));	
+				fieldRefresh = 1; 
 				operator = 0; break;
 				// operator = 0
 				default: break;
@@ -612,7 +578,7 @@ public class JavaCal {
 		btnPoint.setBounds(140, 323, 60, 60);
 		frmJavacalculator.getContentPane().add(btnPoint);
 		
-		JButton btnNegative = new JButton("¡¾");
+		JButton btnNegative = new JButton("Â±");
 		btnNegative.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnNegative.setBounds(10, 323, 60, 60);
 		frmJavacalculator.getContentPane().add(btnNegative);
