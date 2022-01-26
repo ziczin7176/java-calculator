@@ -501,11 +501,30 @@ public class JavaCal {
 		});
 		
 		// ************** button <-, %, C, =, ., +/- *******************
-
+		
 		JButton btnDelete = new JButton("←");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnDelete.setBounds(10, 63, 60, 60);
 		frmJavacalculator.getContentPane().add(btnDelete);
+		btnDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				String[] numberArr = textField.getText().split("");
+				//numberArr[numberArr.length - 1] = "\0";	
+				String deletedNumber = ""; 
+				for(int i = 0; i < numberArr.length - 1; i++) {
+					deletedNumber += numberArr[i];
+				}
+				if(deletedNumber.equals(""))
+					textField.setText("0");
+				else
+					textField.setText(deletedNumber);
+			}
+			
+		});
 		
 		
 		JButton btnPercentage = new JButton("%");
@@ -549,22 +568,22 @@ public class JavaCal {
 				case 1: result = material + Double.parseDouble(textField.getText());
 				textField.setText(Double.toString(result)); // 결과 출력
 				fieldRefresh = 1; // 필드 초기화 활성화
-				operator = 0; break;
+				operator = 0; material = 0; break;
 				// - = 2
 				case 2: result = material - Double.parseDouble(textField.getText());
 				textField.setText(Double.toString(result)); 
 				fieldRefresh = 1; 
-				operator = 0; break;
+				operator = 0; material = 0; break;
 				// * = 3
 				case 3: result = material * Double.parseDouble(textField.getText());
 				textField.setText(Double.toString(result)); 
 				fieldRefresh = 1; 
-				operator = 0; break;
+				operator = 0; material = 0; break;
 				// / = 4
 				case 4: result = material / Double.parseDouble(textField.getText());
 				textField.setText(Double.toString(result));	
 				fieldRefresh = 1; 
-				operator = 0; break;
+				operator = 0; material = 0; break;
 				// operator = 0
 				default: break;
 				}
@@ -578,10 +597,27 @@ public class JavaCal {
 		btnPoint.setBounds(140, 323, 60, 60);
 		frmJavacalculator.getContentPane().add(btnPoint);
 		
-		JButton btnNegative = new JButton("±");
-		btnNegative.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		btnNegative.setBounds(10, 323, 60, 60);
-		frmJavacalculator.getContentPane().add(btnNegative);
-		
-	}
-}
+		// 텍스트필드의 부호 반대로 바꾸기
+		JButton btnSwitch = new JButton("±");
+		btnSwitch.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		btnSwitch.setBounds(10, 323, 60, 60);
+		frmJavacalculator.getContentPane().add(btnSwitch);
+		btnSwitch.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(textField.getText().contains("-") == false) {	// positive
+					textField.setText("-" + textField.getText());
+				}else {												// negative
+					// make positive number
+					Double negaToPosi = -1 * Double.parseDouble(textField.getText());
+					textField.setText(Double.toString(negaToPosi));
+				}// if
+				
+			}// actionPerformed
+		});// ActionListener
+	}// initialize
+	
+}// JavaCal
