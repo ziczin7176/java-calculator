@@ -527,10 +527,12 @@ public class JavaCal {
 		});
 		
 		
-		JButton btnPercentage = new JButton("%");
-		btnPercentage.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		btnPercentage.setBounds(75, 63, 60, 60);
-		frmJavacalculator.getContentPane().add(btnPercentage);
+		JButton btnHistory = new JButton("※");
+		btnHistory.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		btnHistory.setBounds(75, 63, 60, 60);
+		frmJavacalculator.getContentPane().add(btnHistory);
+		
+		
 		
 		JButton btnClear = new JButton("C");
 		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 21));
