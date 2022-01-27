@@ -596,6 +596,18 @@ public class JavaCal {
 		btnPoint.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnPoint.setBounds(140, 323, 60, 60);
 		frmJavacalculator.getContentPane().add(btnPoint);
+		btnPoint.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				if(textField.getText().contains(".") == false)	// '.'이 없다면
+					textField.setText(textField.getText() + ".");
+				
+			}
+			
+		});
 		
 		// 텍스트필드의 부호 반대로 바꾸기
 		JButton btnSwitch = new JButton("±");
