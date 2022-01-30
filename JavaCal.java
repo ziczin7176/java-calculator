@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +43,54 @@ public class JavaCal {
 	public JavaCal() {
 		initialize();
 	}
+	
+	public class HistoryFrame{
+		private int onOff = 0; // 0 -> invisible, 1-> visible
+		private JFrame frameHistory;
+		private JTextArea textHistory;
+		
+		public HistoryFrame() {
+			frameHistory = new JFrame();
+			frameHistory.setLayout(null);
+			frameHistory.setTitle("History");
+			frameHistory.setBounds(100, 100, 290, 430);
+			frameHistory.setResizable(false);
+			frameHistory.setVisible(false);
+			
+			textHistory = new JTextArea();
+			textHistory.setBounds(10, 10, 270, 400);
+			textHistory.setEditable(false);
+			textHistory.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			textHistory.setLineWrap(true);
+			frameHistory.add(textHistory);
+			
+			//JScrollPane areaScrollPane = new JScrollPane(textHistory);
+			//areaScrollPane.setVerticalScrollBarPolicy(
+			//                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+			//areaScrollPane.setPreferredSize(new Dimension(270, 400));
+			//frameHistory.getContentPane().add(areaScrollPane);
 
+			;
+			
+		}
+		
+		public void onOffFrame() {
+			if(onOff == 0) {	// visible
+				frameHistory.setVisible(true);
+				onOff = 1;
+			}else {				// invisible
+				frameHistory.setVisible(false);
+				onOff = 0;
+			}
+		}
+		
+		public void refresh() {
+			textHistory.setText(wholeLine);
+		}
+		
+	}
+	
+	/*
 	private void historyFrame() {
 		
 		JFrame historyF = new JFrame();
@@ -57,7 +105,8 @@ public class JavaCal {
 		historyT.setEditable(false);
 		historyF.add(historyT);
 		
-	}
+	}	
+	*/
 	
 	private void operMethod(String oper, int operNo) {
 		// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
@@ -113,6 +162,8 @@ public class JavaCal {
 							COMPONENTS
 		
 		*******************************************************/
+		
+		HistoryFrame hF = new HistoryFrame();
 		
 		frmJavacalculator = new JFrame();
 		frmJavacalculator.setTitle("JavaCalculator");
@@ -479,7 +530,7 @@ public class JavaCal {
 				fieldRefresh = 1; 
 				operator = 0; 
 				material = 0;
-				oneLine += Double.toString(result) + "\n"; 
+				oneLine += Double.toString(result) + "\n\n"; 
 				wholeLine += oneLine; 
 				oneLine = ""; 
 				break;
@@ -491,7 +542,7 @@ public class JavaCal {
 				fieldRefresh = 1; 
 				operator = 0; 
 				material = 0;
-				oneLine += Double.toString(result) + "\n"; 
+				oneLine += Double.toString(result) + "\n\n"; 
 				wholeLine += oneLine; 
 				oneLine = ""; 
 				break;
@@ -503,7 +554,7 @@ public class JavaCal {
 				fieldRefresh = 1; 
 				operator = 0; 
 				material = 0;
-				oneLine += Double.toString(result) + "\n"; 
+				oneLine += Double.toString(result) + "\n\n"; 
 				wholeLine += oneLine; 
 				oneLine = ""; 
 				break;
@@ -515,7 +566,7 @@ public class JavaCal {
 				fieldRefresh = 1; 
 				operator = 0; 
 				material = 0;
-				oneLine += Double.toString(result) + "\n"; 
+				oneLine += Double.toString(result) + "\n\n"; 
 				wholeLine += oneLine; 
 				oneLine = ""; 
 				break;
@@ -574,7 +625,9 @@ public class JavaCal {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				historyFrame();
+				//historyFrame();
+				hF.refresh();
+				hF.onOffFrame();
 				
 			}// actionPerformed()
 		});// addActionListener
