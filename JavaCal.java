@@ -3,6 +3,8 @@ package javaCal;
 import java.awt.EventQueue;
 
 import javax.swing.*;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,8 +20,8 @@ public class JavaCal {
 	private double result; 			// 계산결과 저장 => '='누르면 띄우기
 	private int fieldRefresh = 0;	// 1이면 이벤트 발생 시 화면 초기화 -> 초기화 후 0
 	private int operator = 0;		// + = 1, - = 2, * = 3, / = 4
-	private String wholeLine = "";	// 전체 라인
-	private String oneLine = "";	// 라인 1개 
+	private String wholeLine = "";	// 전체 결과 라인
+	private String oneLine = "";	// 결과 라인 1개 
 
 	/**
 	 * Launch the application.
@@ -44,36 +46,47 @@ public class JavaCal {
 		initialize();
 	}
 	
+	// 결과 history window
 	public class HistoryFrame{
 		private int onOff = 0; // 0 -> invisible, 1-> visible
 		private JFrame frameHistory;
+		private JPanel panelHistory;
 		private JTextArea textHistory;
+		private JScrollPane scrollHistory;
 		
 		public HistoryFrame() {
-			frameHistory = new JFrame();
-			frameHistory.setLayout(null);
-			frameHistory.setTitle("History");
-			frameHistory.setBounds(100, 100, 290, 430);
-			frameHistory.setResizable(false);
-			frameHistory.setVisible(false);
 			
+			// frame
+			frameHistory = new JFrame();
+			frameHistory.setLayout(new BorderLayout());	// 배치속성 null로 하면 표시x
+			frameHistory.setSize(290, 430);
+			frameHistory.setTitle("History");
+			frameHistory.setResizable(false);
+
+			// panel
+			panelHistory = new JPanel();
+			panelHistory.setLayout(null);
+			
+			// textArea
 			textHistory = new JTextArea();
-			textHistory.setBounds(10, 10, 270, 400);
 			textHistory.setEditable(false);
 			textHistory.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			textHistory.setLineWrap(true);
-			frameHistory.add(textHistory);
-			
-			//JScrollPane areaScrollPane = new JScrollPane(textHistory);
-			//areaScrollPane.setVerticalScrollBarPolicy(
-			//                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-			//areaScrollPane.setPreferredSize(new Dimension(270, 400));
-			//frameHistory.getContentPane().add(areaScrollPane);
+			//textHistory.setLineWrap(true);
 
-			;
+			// scrollPane
+			scrollHistory = new JScrollPane(textHistory, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			scrollHistory.setBounds(10, 10, 270, 380);
+			
+			// add
+			panelHistory.add(scrollHistory);
+			frameHistory.add(panelHistory);
+			frameHistory.setVisible(false);
+
+			
 			
 		}
 		
+		// on / off window
 		public void onOffFrame() {
 			if(onOff == 0) {	// visible
 				frameHistory.setVisible(true);
@@ -84,36 +97,20 @@ public class JavaCal {
 			}
 		}
 		
+		// history window 켤 때 결과 refresh 
 		public void refresh() {
 			textHistory.setText(wholeLine);
 		}
 		
 	}
 	
-	/*
-	private void historyFrame() {
-		
-		JFrame historyF = new JFrame();
-		historyF.setTitle("history");
-		historyF.setBounds(0, 0, 290, 430);
-		historyF.setVisible(true);
-		historyF.setBackground(Color.white);
-		
-		JTextArea historyT = new JTextArea();
-		historyT.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		historyT.setText(wholeLine);
-		historyT.setEditable(false);
-		historyF.add(historyT);
-		
-	}	
-	*/
-	
+	// 연산자 계산 메소드 
 	private void operMethod(String oper, int operNo) {
-		// 이전 값이 있는 경우 -> 연산자 누르면 결과 출력 = 다중연산
+		// 이전 계산 값이 있는 경우 -> 연산자 누르면 결과 출력
 		// 연산자를 여러번 누른 경우이므로 연산결과를 material에 재대입
+		
 		if(material != 0) {
 			
-			// material , textField.getText()
 			switch(operator) {	
 			// + = 1 
 			case 1: oneLine += textField.getText() + oper;
@@ -163,7 +160,7 @@ public class JavaCal {
 		
 		*******************************************************/
 		
-		HistoryFrame hF = new HistoryFrame();
+		HistoryFrame hF = new HistoryFrame();	// history window 생
 		
 		frmJavacalculator = new JFrame();
 		frmJavacalculator.setTitle("JavaCalculator");
@@ -180,7 +177,9 @@ public class JavaCal {
 		frmJavacalculator.getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		
 		// ************** button number *******************
+		
 		JButton btn1 = new JButton("1");
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btn1.setBounds(10, 128, 60, 60);
@@ -401,6 +400,7 @@ public class JavaCal {
 	
 		});
 		
+		
 		// ************** button + - * / *******************
 		
 		JButton btnPlus = new JButton("+");
@@ -463,7 +463,7 @@ public class JavaCal {
 			
 		});
 		
-		// ************** button <-, %, C, =, ., +/- *******************
+		// ************** button <-, history, C, =, ., +/- *******************
 		
 		JButton btnDelete = new JButton("←");
 		btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 21));
@@ -594,7 +594,7 @@ public class JavaCal {
 			
 		});
 		
-		// 텍스트필드의 부호 반대로 바꾸기
+		// 텍스트필드의 부호 반대로 바꾸기 +/-
 		JButton btnSwitch = new JButton("±");
 		btnSwitch.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		btnSwitch.setBounds(10, 323, 60, 60);
